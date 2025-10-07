@@ -1,0 +1,115 @@
+{% extends 'SProvider/design1.html' %}
+{% block researchblock %}
+
+
+<link rel="icon" href="images/icon.png" type="image/x-icon" />
+
+	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
+
+
+
+		<style>
+			body {background-color:#000000;}
+			.container-fluid {padding:50px;}
+			.container{background-color:white;padding:50px;   }
+			#title{font-family: 'Fredoka One', cursive;
+}
+			.text-uppercase{
+			font-family: 'Righteous', cursive;
+
+			}
+			.tweettext{
+
+    border: 2px solid yellowgreen;
+    width: 1104px;
+    height: 442px;
+    overflow: scroll;
+    background-color:;
+}
+		.style1 {
+	color: #FF0000;
+	font-weight: bold;
+}
+.style7 {color: #FFFF00}
+        .style8 {color: #FFFF00; font-weight: bold; }
+        </style>
+
+	<body>
+	<div class="container-fluid">
+		<div class="container">
+
+			<div class="row">
+				<div class="col-md-5">
+ 					<form role="form" method="POST" >
+						{% csrf_token %}
+						<fieldset>
+							<p align="center" class="text-uppercase pull-center style1">View All Road Accident Prediction Status !!! </p>
+                            <hr>
+                            <div >
+                                 <table border="5" bordercolor="#FF00FF">
+
+
+                                   <tr><td bgcolor="#FF0000"><div align="center" class="style8"><span class="style7">Reference_Number</span></div></td>
+                                    <td bgcolor="#FF0000"><div align="center" class="style8"><span class="style7">State</span></div></td>
+                                    <td bgcolor="#FF0000"><div align="center" class="style8"><span class="style7">Area_Name</span></div></td>
+                                    <td bgcolor="#FF0000"><div align="center" class="style8"><span class="style7">Traffic_Rules_Viaolation</span></div></td>
+                                    <td bgcolor="#FF0000"><div align="center" class="style8"><span class="style7">Vechile_Load</span></div></td>
+                                    <td bgcolor="#FF0000"><div align="center" class="style8"><span class="style7">Time</span></div></td>
+                                    <td bgcolor="#FF0000"><div align="center" class="style8"><span class="style7">Road_Class</span></div></td>
+                                        <td bgcolor="#FF0000"><div align="center" class="style8"><span class="style7">Road_Surface</span></div></td>
+                                    <td bgcolor="#FF0000"><div align="center" class="style8"><span class="style7">Lighting_Conditions</span></div></td>
+                                    <td bgcolor="#FF0000"><div align="center" class="style8"><span class="style7">Weather_Conditions</span></div></td>
+                                    <td bgcolor="#FF0000"><div align="center" class="style8"><span class="style7">Person_Type</span></div></td>
+                                    <td bgcolor="#FF0000"><div align="center" class="style8"><span class="style7">Sex</span></div></td>
+                                    <td bgcolor="#FF0000"><div align="center" class="style8"><span class="style7">Age</span></div></td>
+                                    <td bgcolor="#FF0000"><div align="center" class="style8"><span class="style7">Type_of_Vehicle</span></div></td>
+                                    <td bgcolor="#FF0000"><div align="center" class="style8"><span class="style7">Prediction</span></div></td>
+
+
+
+                      </tr>
+                            {% for object in objs %}
+                      <tr>
+
+                          <td bgcolor="#FFFFFF" style="color:red; font-size:20px; font-family:fantasy" ><div align="center">{{object.Reference_Number}}</div></td>
+<td bgcolor="#FFFFFF" style="color:red; font-size:20px; font-family:fantasy" ><div align="center">{{object.State}}</div></td>
+<td bgcolor="#FFFFFF" style="color:red; font-size:20px; font-family:fantasy" ><div align="center">{{object.Area_Name }}</div></td>
+<td bgcolor="#FFFFFF" style="color:red; font-size:20px; font-family:fantasy" ><div align="center">{{object.Traffic_Rules_Viaolation}}</div></td>
+<td bgcolor="#FFFFFF" style="color:red; font-size:20px; font-family:fantasy" ><div align="center">{{object.Vechile_Load}}</div></td>
+<td bgcolor="#FFFFFF" style="color:red; font-size:20px; font-family:fantasy" ><div align="center">{{object.Time}}</div></td>
+<td bgcolor="#FFFFFF" style="color:red; font-size:20px; font-family:fantasy" ><div align="center">{{object.Road_Class}}</div></td>
+<td bgcolor="#FFFFFF" style="color:red; font-size:20px; font-family:fantasy" ><div align="center">{{object.Road_Surface}}</div></td>
+<td bgcolor="#FFFFFF" style="color:red; font-size:20px; font-family:fantasy" ><div align="center">{{object.Lighting_Conditions}}</div></td>
+<td bgcolor="#FFFFFF" style="color:red; font-size:20px; font-family:fantasy" ><div align="center">{{object.Weather_Conditions}}</div></td>
+<td bgcolor="#FFFFFF" style="color:red; font-size:20px; font-family:fantasy" ><div align="center">{{object.Person_Type}}</div></td>
+<td bgcolor="#FFFFFF" style="color:red; font-size:20px; font-family:fantasy" ><div align="center">{{object.Sex}}</div></td>
+<td bgcolor="#FFFFFF" style="color:red; font-size:20px; font-family:fantasy" ><div align="center">{{object.Age}}</div></td>
+<td bgcolor="#FFFFFF" style="color:red; font-size:20px; font-family:fantasy" ><div align="center">{{object.Type_of_Vehicle}}</div></td>
+<td bgcolor="#FFFFFF" style="color:red; font-size:20px; font-family:fantasy" ><div align="center">{{object.SVM}}</div></td>
+
+
+
+                        </tr>
+                                        {% endfor %}
+                      </table>
+
+
+                            </div>
+
+
+
+
+						</fieldset>
+					</form>
+				</div>
+
+				<div class="col-md-2">
+					<!-------null------>
+				</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+    <tr>

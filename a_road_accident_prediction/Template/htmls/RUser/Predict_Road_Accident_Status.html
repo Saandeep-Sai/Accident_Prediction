@@ -1,0 +1,302 @@
+{% extends 'RUser/design.html' %}
+{% block userblock %}
+
+
+<link rel="icon" href="images/icon.png" type="image/x-icon" />
+
+	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
+
+
+
+		<style>
+			body {background-color:#000000;}
+			.container-fluid {padding:50px;}
+			.container{background-color:white;padding:50px;   }
+			#title{font-family: 'Fredoka One', cursive;
+}
+			.text-uppercase{
+			font-family: 'Righteous', cursive;
+
+			}
+			.tweettext{
+
+    border: 2px solid yellowgreen;
+    width: 1104px;
+    height: 142px;
+    overflow: scroll;
+    background-color:;
+}
+		.style1 {
+	color: #FF0000;
+	font-weight: bold;
+}
+.style6 {color: #FF0000}
+.style8 {font-weight: bold}
+.style10 {color: #FFFF00}
+        .style11 {color: #FFFF00; font-weight: bold; }
+        </style>
+
+	<body>
+	<div class="container-fluid">
+		<div class="container">
+
+			<div class="row">
+				<div class="col-md-5">
+
+                   <form role="form" method="POST" >
+						{% csrf_token %}
+						<fieldset>
+							<p align="center" class="text-uppercase pull-center style1">PREDICT ROAD ACCIDENT STATUS!!! </p>
+                            <hr>
+
+                                {% csrf_token %}
+                                <table width="568" align="center">
+                                  <tr>
+                                    <td width="287" height="44" bgcolor="#FF0000"><div align="center" class="style11">Enter Reference Number </div></td>
+                                    <td width="269"><input type="text" name="Reference_Number" placeholder="Enter Reference Number"></td>
+                                  </tr>
+                                  <tr>
+                                    <td height="44" bgcolor="#FF0000"><div align="center" class="style11">Select State Name </div></td>
+                                    <td><select name="State">
+                                      <option selected>---Select State Name---</option>
+                                      <option>Chhattisgarh</option>
+                                      <option>Andhra Pradesh</option>
+									  <option>Chhattisgarh</option>
+									  <option>Karnataka</option>
+									  <option>Kerala</option>
+									  <option>Madhya Pradesh</option>
+									  <option>Maharashtra</option>
+									  <option>Meghalaya</option>
+									  <option>Mizoram</option>
+									  <option>Odisha</option>
+									  <option>Tamil Nadu</option>
+									  <option>Telangana </option>
+									  <option>Uttar Pradesh</option>
+									  <option>West Bengal</option>
+									  <option>Punjab</option>
+									  <option>Tripura</option>
+									  
+                                                                                                                                                                                                                     </select></td>
+                                  </tr>
+                                  <tr>
+                                    <td height="44" bgcolor="#FF0000"><div align="center"><strong><span class="style10">Area_Name </span></strong></div></td>
+                                    <td><select name="Area_Name">
+                                      <option>---Select Area Name---</option>
+									  <option>BIJAPUR</option>
+                                      <option>KORBA</option>
+									  <option>KURNOOL</option>
+									  <option>ANJAW</option>
+									  <option>CHANGLANG</option>
+									  <option>DIBANG VALLEY</option>
+									  <option>EAST KAMENG</option>
+									  <option>DANTEWADA</option>
+									  <option>CHAMARAJANAGAR</option>
+									  <option>CHIKBALLAPUR</option>
+									  <option>PATHANAMTHITTA</option>
+									  <option>THIRUVANANTHAPURAM</option>
+									  <option>DINDORI</option>
+									  <option>GUNA</option>
+									  <option>AURANGABAD</option>
+									  <option>BEED</option>
+									  <option>GADCHIROLI</option>
+									  <option>RI BHOI</option>
+									  <option>SOUTH GARO HILLS</option>
+									  <option>WEST GARO HILLS</option>
+									  <option>KOLASIB</option>
+									  <option>LAWNGTLAI</option>
+									  <option>LUNGLEI</option>
+									  <option>MAMIT</option>
+									  <option>SAIHA</option>
+									  <option>BARGARH</option>
+									  <option>BHADRAK</option>
+									  <option>BOUDH</option>
+									  <option>CUTTACK</option>
+									  <option>DEOGARH</option>
+									  <option>DHENKANAL</option>
+									  <option>GAJAPATI</option>
+									  <option>JAGATSINGHAPUR</option>
+									  <option>JAJAPUR</option>
+									  <option>JHARSUGUDA</option>
+									 <option> KALAHANDI</option>
+									 <option> DINDIGUL</option>
+									  <option>KAPURTHALA</option>
+									  <option>ADILABAD</option>
+									  <option>KARIMNAGAR</option>
+									  <option>ERODE</option>
+									  <option>ALIGARH</option>
+									  <option>ALLAHABAD</option>
+									  <option>AMBEDKAR NAGAR</option>
+									  <option>AMETHI</option>
+									  <option>BATHINDA</option>
+									  <option>FARIDKOT</option>
+									  <option>Mysore</option>
+									  <option>Bangalore</option>
+									  <option>Mangalore</option>
+									  <option>Belgavi</option>
+
+									 									  
+                                    </select>                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td height="44" bgcolor="#FF0000"><div align="center" class="style11">Traffic_Rules_Viaolation</div></td>
+                                    <td><select name="Traffic_Rules_Viaolation">
+                                      <option>---Select Traffic_Rules_Viaolation---</option>
+                                      <option>Over Speeding</option>
+                                      <option>Drink and Drive</option>									  
+									  <option>Driving without seatbelt</option>
+									  <option>Dangerous Driving</option>
+									  <option>Not providing way for emergency vehicles</option>
+									  <option>Driving/Riding without Licence</option>
+
+									  
+                                    </select></td>
+                                  </tr>
+                                  <tr>
+                                    <td height="44" bgcolor="#FF0000"><div align="center" class="style11"><span class="style2">Vechile_Load</span></div></td>
+                                    <td><select name="Vechile_Load">
+                                        <option>---Select Vechile_Load---</option>
+                                        <option>Normally Loaded</option>
+                                        <option>Heavy Loaded</option>
+										<option>Empty</option>
+										<option>Fully Loaded</option>
+										
+										
+                                      </select></td>
+                                  </tr>
+                                  <tr>
+                                    <td height="44" bgcolor="#FF0000"><div align="center" class="style11">Enter Total Travelled Time</div></td>
+                                    <td><input type="text" name="Time" placeholder="Enter Time" >
+                                    <span class="style1">(Hours)</span></td>
+                                  </tr>
+                                  <tr>
+                                    <td height="44" bgcolor="#FF0000"><div align="center" class="style11">Road_Class</div></td>
+                                    <td><select name="Road_Class">
+                                      <option>---Select Road_Class</option>
+                                      <option>Unclassified</option>
+                                      <option>A</option>
+									  <option>A(M)</option>
+									 <option> Motorway</option>
+									 <option> B</option>
+									  
+                                    </select>                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td height="44" bgcolor="#FF0000"><div align="center" class="style11">Road_Surface</div></td>
+                                    <td><select name="Road_Surface">
+                                      <option>---Select  Road_Surface ---</option>
+                                      <option>Wet / Damp</option>
+                                      <option>Dry</option>
+									  <option>Frost / Ice</option>
+                                    </select></td>
+                                  </tr>
+                                  <tr>
+                                    <td height="44" bgcolor="#FF0000"><div align="center" class="style11">Lighting_Conditions</div></td>
+                                    <td><select name="Lighting_Conditions">
+                                      <option>---Select  Lighting_Conditions ---</option>
+                                      <option>Darkness: street lighting unknown</option>
+                                      <option>Daylight: street lights present</option>
+									  <option>Darkness: street lights present but unlit</option>
+									 <option> Darkness: street lights present and lit</option>
+									<option> Darkness: street lighting unknown</option>
+									 
+									  
+                                    </select></td>
+                                  </tr>
+                                  <tr>
+                                    <td height="44" bgcolor="#FF0000"><div align="center" class="style11">Weather_Conditions</div></td>
+                                    <td><select name="Weather_Conditions">
+                                      <option>---Select  Weather_Conditions ---</option>
+                                      <option>Raining without high winds</option>
+                                      <option>Fine without high winds</option>
+									  <option>Fine with high winds</option>
+									  <option>Unknown</option>
+									  <option>Other</option>
+									  
+									  
+                                    </select></td>
+                                  </tr>
+                                  <tr>
+                                    <td height="44" bgcolor="#FF0000"><div align="center" class="style11">Person_Type</div></td>
+                                    <td><select name="Person_Type">
+                                      <option>---Select  Person_Type---</option>
+                                      <option>Driver</option>
+                                      <option>Pedestrian</option>
+									 <option> Passenger
+									  
+                                    </select></td>
+                                  </tr>
+                                  <tr>
+                                    <td height="44" bgcolor="#FF0000"><div align="center" class="style11">Sex</div></td>
+                                    <td><select name="Sex">
+                                      <option>---Select  Sex ---</option>
+                                      <option>Male</option>
+                                      <option>Female</option>
+                                    </select>                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td height="44" bgcolor="#FF0000"><div align="center" class="style11">Age</div></td>
+                                    <td><input type="text" name="Age" placeholder="Enter Age"></td>
+                                  </tr>
+                                  <tr>
+                                    <td height="44" bgcolor="#FF0000"><div align="center" class="style11">Select Type_of_Vehicle</div></td>
+                                    <td><select name="Type_of_Vehicle">
+                                      <option>--- Select Type_of_Vehicle--</option>
+                                      <option>Car</option>
+                                      <option>Goods vehicle 3.5 tonnes mgw and under</option>
+									  <option>Pedal cycle</option>
+									  <option>Bus or coach (17 or more passenger seats)</option>
+									 <option>Minibus (8 ? 16 passenger seats)</option>
+									 <option>Bus or coach (17 or more passenger seats)</option>
+									 <option>Motorcycle over 500cc</option>
+									 <option>Taxi/Private hire car</option>
+									 <option>Motorcycle over 125cc and up to 500cc</option>
+									 <option>Taxi/Private hire car</option>
+									 <option>Motorcycle over 50cc and up to 125cc</option>
+									<option> M/cycle 50cc and under</option>									  
+                                    </select>                                    </td>
+                                  </tr>
+  <td><p>&nbsp; </p>
+          <p>
+            <input name="submit" type="submit" class="style1" value="Predict Road Accident Status">
+        </p></td>
+  </tr>
+                                </table>
+					 </fieldset>
+				  </form>
+
+
+ 					<form role="form" method="POST" >
+						{% csrf_token %}
+						<fieldset>
+
+                            <hr>
+                            <div class="tweettext">
+                               <table border="5" align="center" bordercolor="#FF00FF">
+
+                    <tr><td width="312" bgcolor="#FFFF00"><div align="center"><strong><span class="style8 style6">ACCIDENT  PREDICTION STATUS::</span></strong></div></td>
+                          <td width="242" bgcolor="#FFFFFF" style="color:red; font-size:20px; font-family:fantasy" ><div align="center">------{{objs}} ------ </div></td>
+
+                        </tr>
+
+
+                      </table>
+
+                            </div>
+
+
+
+
+						</fieldset>
+					</form>
+				</div>
+
+				<div class="col-md-2">
+					<!-------null------>
+				</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+    <tr>

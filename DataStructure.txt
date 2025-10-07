@@ -1,0 +1,36 @@
+A Road Accident Prediction Model Using Data Mining Techniques 
+
+Accident prediction, Data mining, Apriori algorithm, Rule mining, Classification
+
+A_Road_Accident_Prediction
+
+
+a_road_accident_prediction
+
+
+road_accident_prediction
+
+
+Reference_Number
+State
+Area_Name 
+Traffic_Rules_Viaolation
+Vechile_Load
+Time
+Road_Class
+Road_Surface
+Lighting_Conditions
+Weather_Conditions
+Person_Type
+Sex
+Age
+Type_of_Vehicle
+SVM
+
+
+
+
+road_accident_prediction,detection_ratio,detection_accuracy
+
+
+
