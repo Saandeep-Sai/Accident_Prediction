@@ -7,16 +7,16 @@
 }
 
 :root {
-    --primary-gradient: linear-gradient(135deg, #FFA4A4 0%, #FFBDBD 100%);
-    --secondary-gradient: linear-gradient(135deg, #BADFDB, #9BC5C3);
-    --background-gradient: linear-gradient(135deg, #FCF9EA 0%, #BADFDB 100%);
-    --text-primary: #2c3e50;
-    --text-secondary: #555;
-    --border-color: #BADFDB;
-    --background-light: #FCF9EA;
-    --shadow-light: 0 6px 18px rgba(186, 223, 219, 0.15);
-    --shadow-medium: 0 12px 35px rgba(186, 223, 219, 0.2);
-    --shadow-heavy: 0 24px 45px rgba(186, 223, 219, 0.3);
+    --primary-gradient: linear-gradient(135deg, #4682B4 0%, #87CEEB 100%);
+    --secondary-gradient: linear-gradient(135deg, #87CEEB, #4682B4);
+    --background-gradient: linear-gradient(135deg, #F0F8FF 0%, #87CEEB 100%);
+    --text-primary: #2F4F4F;
+    --text-secondary: #2F4F4F;
+    --border-color: #87CEEB;
+    --background-light: #F0F8FF;
+    --shadow-light: 0 6px 18px rgba(135, 206, 235, 0.15);
+    --shadow-medium: 0 12px 35px rgba(135, 206, 235, 0.2);
+    --shadow-heavy: 0 24px 45px rgba(135, 206, 235, 0.3);
     --border-radius: 12px;
     --border-radius-large: 20px;
     --transition: all 0.3s ease;
@@ -43,7 +43,7 @@ body {
 .btn-modern {
     padding: 18px 36px;
     background: var(--primary-gradient);
-    color: var(--text-primary);
+    color: white;
     border: none;
     border-radius: var(--border-radius);
     font-size: 1.3rem;
@@ -57,7 +57,7 @@ body {
 
 .btn-modern:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(255, 164, 164, 0.4);
+    box-shadow: 0 12px 30px rgba(70, 130, 180, 0.4);
 }
 
 .btn-secondary {
@@ -81,14 +81,14 @@ body {
 
 .form-input:focus {
     outline: none;
-    border-color: #FFA4A4;
+    border-color: #4682B4;
     background: white;
-    box-shadow: 0 0 0 3px rgba(255, 164, 164, 0.2);
+    box-shadow: 0 0 0 3px rgba(70, 130, 180, 0.2);
 }
 
 /* Cards */
 .card-modern {
-    background: linear-gradient(135deg, #FCF9EA, rgba(255, 255, 255, 0.9));
+    background: linear-gradient(135deg, #F0F8FF, rgba(255, 255, 255, 0.9));
     padding: 36px;
     border-radius: 18px;
     box-shadow: var(--shadow-medium);
@@ -125,9 +125,9 @@ body {
 
 .nav-link:hover {
     background: var(--primary-gradient);
-    color: var(--text-primary);
+    color: white;
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(255, 164, 164, 0.4);
+    box-shadow: 0 6px 18px rgba(70, 130, 180, 0.4);
 }
 
 /* Typography */
