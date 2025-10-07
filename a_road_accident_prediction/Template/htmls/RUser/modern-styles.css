@@ -7,16 +7,16 @@
 }
 
 :root {
-    --primary-gradient: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
-    --secondary-gradient: linear-gradient(135deg, #54a0ff, #2e86de);
-    --dark-gradient: linear-gradient(135deg, #5f27cd, #341f97);
+    --primary-gradient: linear-gradient(135deg, #FFA4A4 0%, #FFBDBD 100%);
+    --secondary-gradient: linear-gradient(135deg, #BADFDB, #9BC5C3);
+    --background-gradient: linear-gradient(135deg, #FCF9EA 0%, #BADFDB 100%);
     --text-primary: #2c3e50;
     --text-secondary: #555;
-    --border-color: #ddd;
-    --background-light: #fafafa;
-    --shadow-light: 0 6px 18px rgba(0, 0, 0, 0.1);
-    --shadow-medium: 0 12px 35px rgba(0, 0, 0, 0.12);
-    --shadow-heavy: 0 24px 45px rgba(0, 0, 0, 0.12);
+    --border-color: #BADFDB;
+    --background-light: #FCF9EA;
+    --shadow-light: 0 6px 18px rgba(186, 223, 219, 0.15);
+    --shadow-medium: 0 12px 35px rgba(186, 223, 219, 0.2);
+    --shadow-heavy: 0 24px 45px rgba(186, 223, 219, 0.3);
     --border-radius: 12px;
     --border-radius-large: 20px;
     --transition: all 0.3s ease;
@@ -24,7 +24,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 50%, #ff9ff3 100%);
+    background: var(--background-gradient);
     min-height: 100vh;
     color: var(--text-primary);
     line-height: 1.6;
@@ -43,7 +43,7 @@ body {
 .btn-modern {
     padding: 18px 36px;
     background: var(--primary-gradient);
-    color: white;
+    color: var(--text-primary);
     border: none;
     border-radius: var(--border-radius);
     font-size: 1.3rem;
@@ -57,7 +57,7 @@ body {
 
 .btn-modern:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(255, 107, 107, 0.4);
+    box-shadow: 0 12px 30px rgba(255, 164, 164, 0.4);
 }
 
 .btn-secondary {
@@ -81,18 +81,19 @@ body {
 
 .form-input:focus {
     outline: none;
-    border-color: #ff6b6b;
+    border-color: #FFA4A4;
     background: white;
-    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.15);
+    box-shadow: 0 0 0 3px rgba(255, 164, 164, 0.2);
 }
 
 /* Cards */
 .card-modern {
-    background: white;
+    background: linear-gradient(135deg, #FCF9EA, rgba(255, 255, 255, 0.9));
     padding: 36px;
     border-radius: 18px;
     box-shadow: var(--shadow-medium);
     transition: var(--transition);
+    border: 1px solid var(--border-color);
 }
 
 .card-modern:hover {
@@ -124,9 +125,9 @@ body {
 
 .nav-link:hover {
     background: var(--primary-gradient);
-    color: white;
+    color: var(--text-primary);
     transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(255, 107, 107, 0.4);
+    box-shadow: 0 6px 18px rgba(255, 164, 164, 0.4);
 }
 
 /* Typography */
