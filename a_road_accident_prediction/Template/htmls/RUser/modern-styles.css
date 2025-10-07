@@ -7,27 +7,28 @@
 }
 
 :root {
-    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --secondary-gradient: linear-gradient(135deg, #74b9ff, #0984e3);
-    --dark-gradient: linear-gradient(135deg, #2d3436, #636e72);
+    --primary-gradient: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+    --secondary-gradient: linear-gradient(135deg, #54a0ff, #2e86de);
+    --dark-gradient: linear-gradient(135deg, #5f27cd, #341f97);
     --text-primary: #2c3e50;
-    --text-secondary: #7f8c8d;
-    --border-color: #e1e8ed;
-    --background-light: #f8f9fa;
-    --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.08);
-    --shadow-medium: 0 10px 30px rgba(0, 0, 0, 0.1);
-    --shadow-heavy: 0 20px 40px rgba(0, 0, 0, 0.1);
-    --border-radius: 10px;
+    --text-secondary: #555;
+    --border-color: #ddd;
+    --background-light: #fafafa;
+    --shadow-light: 0 6px 18px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 12px 35px rgba(0, 0, 0, 0.12);
+    --shadow-heavy: 0 24px 45px rgba(0, 0, 0, 0.12);
+    --border-radius: 12px;
     --border-radius-large: 20px;
     --transition: all 0.3s ease;
 }
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: var(--primary-gradient);
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 50%, #ff9ff3 100%);
     min-height: 100vh;
     color: var(--text-primary);
     line-height: 1.6;
+    font-size: 1.1rem;
 }
 
 /* Glass morphism effect */
@@ -40,12 +41,12 @@ body {
 
 /* Modern buttons */
 .btn-modern {
-    padding: 15px 30px;
+    padding: 18px 36px;
     background: var(--primary-gradient);
     color: white;
     border: none;
     border-radius: var(--border-radius);
-    font-size: 1rem;
+    font-size: 1.3rem;
     font-weight: 600;
     cursor: pointer;
     transition: var(--transition);
@@ -56,7 +57,7 @@ body {
 
 .btn-modern:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 12px 30px rgba(255, 107, 107, 0.4);
 }
 
 .btn-secondary {
@@ -70,26 +71,26 @@ body {
 /* Modern form inputs */
 .form-input {
     width: 100%;
-    padding: 15px 20px;
+    padding: 18px 24px;
     border: 2px solid var(--border-color);
     border-radius: var(--border-radius);
-    font-size: 1rem;
+    font-size: 1.2rem;
     transition: var(--transition);
     background: var(--background-light);
 }
 
 .form-input:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: #ff6b6b;
     background: white;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.15);
 }
 
 /* Cards */
 .card-modern {
     background: white;
-    padding: 30px;
-    border-radius: 15px;
+    padding: 36px;
+    border-radius: 18px;
     box-shadow: var(--shadow-medium);
     transition: var(--transition);
 }
@@ -125,14 +126,14 @@ body {
     background: var(--primary-gradient);
     color: white;
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 6px 18px rgba(255, 107, 107, 0.4);
 }
 
 /* Typography */
 .heading-primary {
-    font-size: 2.5rem;
+    font-size: 3.2rem;
     font-weight: 700;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     background: var(--primary-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -140,15 +141,15 @@ body {
 }
 
 .heading-secondary {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     font-weight: 600;
     color: var(--text-primary);
-    margin-bottom: 20px;
+    margin-bottom: 24px;
 }
 
 .text-muted {
     color: var(--text-secondary);
-    font-size: 1.1rem;
+    font-size: 1.4rem;
 }
 
 /* Animations */
@@ -181,18 +182,18 @@ body {
 
 /* Feature icons */
 .feature-icon {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     background: var(--primary-gradient);
-    border-radius: 15px;
+    border-radius: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
 }
 
 .feature-icon i {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: white;
 }
 
