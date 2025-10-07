@@ -3,57 +3,251 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Remote User</title>
-<link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
-<style>
-      body{background: url("{% static 'bg.jpg' %}");
-	background-size:cover;
-	font-family: 'Russo One', sans-serif;
-	background-color: #000000;
-    }
-    h1{
-    color:white;
-    }
-.topnav {
-  overflow: hidden;
-  background-color: #812;
-}
-
-.topnav a {
-  float: left;
-  color: #FFFFFF;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-.topnav a.active {
-  background-color: #8e4fd1;
-  color: white;
-}
-.style1 {color: #FF0000}
-</style>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Road Accident Prediction Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #2c3e50;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .nav-menu a:hover {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .nav-menu a.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+        
+        .main-content {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .welcome-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .welcome-section h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .welcome-section p {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .dashboard-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .card-icon i {
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .card-description {
+            color: #7f8c8d;
+            line-height: 1.6;
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #2c3e50;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-menu {
+                flex-direction: column;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .welcome-section h1 {
+                font-size: 2rem;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
 <body>
-
-<h1 align="center" class="style1">A Road Accident Prediction Model Using Data Mining Techniques</h1>
-
-<div  class="topnav">
-
-     <a  href="{% url 'Predict_Road_Accident_Status' %}">PREDICT ROAD ACCIDENT STATUS </a>
-     <a href="{% url 'ViewYourProfile' %}">VIEW YOUR PROFILE</a>
-     <a href="{% url 'login' %}">LOGOUT</a>
-</div>
-
-<div class="mainholder">
-{% block userblock %}
-{% endblock %}
-</div>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-road"></i> Road Safety AI
+            </div>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="{% url 'Predict_Road_Accident_Status' %}">
+                        <i class="fas fa-chart-line"></i> Predict Status
+                    </a></li>
+                    <li><a href="{% url 'ViewYourProfile' %}">
+                        <i class="fas fa-user"></i> Profile
+                    </a></li>
+                    <li><a href="{% url 'login' %}">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="main-content">
+        {% block userblock %}
+        <div class="welcome-section">
+            <h1>Road Accident Prediction Dashboard</h1>
+            <p>Advanced data mining and machine learning techniques for accident prevention and road safety analysis</p>
+        </div>
+        
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3 class="card-title">AI Prediction</h3>
+                <p class="card-description">Use advanced machine learning algorithms to predict road accident probabilities based on various factors.</p>
+            </div>
+            
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <h3 class="card-title">Data Analytics</h3>
+                <p class="card-description">Comprehensive analysis of accident patterns, trends, and risk factors using data mining techniques.</p>
+            </div>
+            
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="card-title">Safety Insights</h3>
+                <p class="card-description">Get actionable insights to improve road safety and prevent accidents in your area.</p>
+            </div>
+        </div>
+        {% endblock %}
+    </main>
 </body>
 </html>

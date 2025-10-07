@@ -1,103 +1,257 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-{% load static %}
 <!DOCTYPE html>
-
+{% load static %}
 <html lang="en">
-
-	<title>Login</title>
-
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-	<head>
-
-<link rel="icon" href="images/icon.png" type="image/x-icon" />
-
-	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
-
-
-
-		<style>
-			body {background: url("{% static 'bg.jpg' %}");
-			}
-			.container-fluid {padding:50px;}
-			.container{background-color:white;padding:50px;   }
-			#title{font-family: 'Fredoka One', cursive;
-}
-			.text-uppercase{
-			font-family: 'Righteous', cursive;
-
-			}
-		.style1 {color: #FF0000}
-        .style4 {color: #FF0000; font-weight: bold; }
-        .style5 {
-	font-family: 'Righteous', cursive;
-	color: #FF0000;
-	font-weight: bold;
-}
-        </style>
-	</head>
-	<body>
-	<div class="container-fluid">
-		<div >
-			<h2 class="style1 text-center" id="title"><strong>A Road Accident Prediction Model Using Data Mining Techniques
-
-</strong></h2>
-			 <p class="text-center">
-				<span class="style4"><small id="passwordHelpInline" class="text-muted">Accident prediction, Data mining, Apriori algorithm, Rule mining, Classification
-
- </small></span> </p>
- 			<hr>
-			<div class="row">
-				<div class="col-md-5">
- 					<form role="form" method="POST" >
-						{% csrf_token %}
-						<fieldset>
-							<p class="text-uppercase pull-center">&nbsp;</p>
-					  </fieldset>
-					</form>
-				</div>
-
-				<div class="col-md-2">
-					<!-------null------>
-				</div>
-
-				<div class="col-md-5">
- 				 		<form method="POST" role="form">
-							{% csrf_token %}
-
-						<fieldset>
-                             {% load static %}
-						<img src="{% static '/login.jpg' %}" alt="My image">
-							<p class="style5"> Login Using Your Account: </p>
-
-							<div class="form-group">
-								<input type="text" name="username"   placeholder="User Name" required>
-							</div>
-							<div class="form-group">
-								<input type="password" name="password"   placeholder="Password" required>
-							</div>
-							<div>
-								<input type="submit" name="submit1"  class="btn btn-md" value="sign_in">
-							</div></br>
-
-							<p class="style5"> Login Using Your Account: </p>
-
-							<div>
-
-							<button class="btn btn-lg "><a href="{% url 'serviceproviderlogin' %}">SERVICE PROVIDER</a></button>
-                                <button class="btn btn-lg "><a href="{% url 'Register1' %}">REGISTER</a></button>
- 							</div>
- 						</fieldset>
-				</form>
-				</div>
-			</div>
-		</div>
-
-	</div>
-	</body>
-
-
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Login - Road Accident Prediction</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .main-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 1000px;
+            width: 90%;
+            margin: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+        
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .login-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .login-title {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e1e8ed;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            margin-right: 10px;
+            width: calc(50% - 5px);
+            display: inline-block;
+        }
+        
+        .btn-secondary a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .info-section {
+            text-align: center;
+        }
+        
+        .info-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-card i {
+            font-size: 2rem;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .feature-card h3 {
+            color: #2c3e50;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .btn-secondary {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="header">
+            <h1>Road Accident Prediction System</h1>
+            <p>Advanced Data Mining & Machine Learning for Accident Prevention</p>
+        </div>
+        
+        <div class="content-wrapper">
+            <div class="info-section">
+                {% load static %}
+                <img src="{% static 'Login.jpg' %}" alt="Road Safety">
+                
+                <div class="features">
+                    <div class="feature-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Data Analysis</h3>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Safety Prediction</h3>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-brain"></i>
+                        <h3>AI Powered</h3>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-road"></i>
+                        <h3>Road Analytics</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="login-section">
+                <h2 class="login-title">Welcome Back</h2>
+                
+                <form method="POST" role="form">
+                    {% csrf_token %}
+                    
+                    <div class="form-group">
+                        <input type="text" name="username" placeholder="Username" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="password" name="password" placeholder="Password" required>
+                    </div>
+                    
+                    <button type="submit" name="submit1" class="btn">Sign In</button>
+                    
+                    <div style="display: flex; gap: 10px;">
+                        <button type="button" class="btn btn-secondary">
+                            <a href="{% url 'serviceproviderlogin' %}">Service Provider</a>
+                        </button>
+                        <button type="button" class="btn btn-secondary">
+                            <a href="{% url 'Register1' %}">Register</a>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
 </html>

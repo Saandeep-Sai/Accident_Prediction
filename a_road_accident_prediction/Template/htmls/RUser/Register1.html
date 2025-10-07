@@ -1,112 +1,295 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-
-{% load static %}
-
 <!DOCTYPE html>
-
+{% load static %}
 <html lang="en">
-
-	<title>Register Your Details</title>
-
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-	    <style type="text/css">
-<!--
-.style1 {
-	color: #FF0000;
-	font-weight: bold;
-}
--->
-        </style>
-	    <head>
-
-
-
-	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Fredoka+One" rel="stylesheet">
-
-
-
-		<style>
-			body {background: url("{% static 'bg.jpg' %}");
-			}
-			.container-fluid {padding:50px;}
-			.container{background-color:white;padding:50px;   }
-			#title{font-family: 'Fredoka One', cursive;
-}
-			.text-uppercase{
-			font-family: 'Righteous', cursive;
-
-			}
-        </style>
-	</head>
-	<body>
-	<div class="container-fluid">
-		<div>
-			<h2 class="text-center style1" id="title">A Road Accident Prediction Model Using Data Mining Techniques
-</h2>
-			 <p class="text-center">
-				<span class="style1"><small id="passwordHelpInline" class="text-muted">Accident prediction, Data mining, Apriori algorithm, Rule mining, Classification
-
-</small></span></p>
-			 <hr>
-			<div class="row">
-				<div class="col-md-5">
- 					<form role="form" method="POST" >
-						{% csrf_token %}
-						<fieldset>
-                            {% load static %}
-						<img src="{% static '/Register.jpg' %}" alt="My image"><br>
-						<span class="style1">REGISTER YOUR DETAILS HERE !!!						</span>
-						<div class="form-group">
-								<input type="text" name="username" id="username"  placeholder="User Name" required>
-						</div>
-
-							<div class="form-group">
-								<input type="email" name="email" id="email"  placeholder="Email Address" required>
-							</div>
-							<div class="form-group">
-								<input type="password" name="password" id="password"  placeholder="Password" required>
-							</div>
-								<div class="form-group">
-								<input type="number" name="phoneno" id="phoneno"  placeholder="Mobile Number" required>
-							</div>
-							<div class="form-group">
-								<input type="text" name="country" id="country"  placeholder="Country" required>
-							</div>
-							<div class="form-group">
-								<input type="text" name="state" id="state"  placeholder="State" required>
-							</div>
-							<div class="form-group">
-								<input type="text" name="city" id="city"  placeholder="City" required>
-							</div>
-
-
-						<div class="form-check">
-						  <label class="form-check-label"></label>
-						</div>
- 							<div>
- 									  <input type="submit" class="btn btn-lg btn-primary" name="submit"  value="sign_up" >
- 							</div>
-					  </fieldset>
-						<div><br>
-						  <button class="btn btn-lg "><a href="{% url 'login' %}">User Login</a></button>
-					  </div>
-					</form>
-				</div>
-
-				<div class="col-md-2">
-					<!-------null------>
-				</div>
-
-				<div class="col-md-5">				</div>
-			</div>
-		</div>
-
-	</div>
-	</body>
-
-
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Register - Road Accident Prediction</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+        
+        .main-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 90%;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+        
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+        
+        .register-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .register-title {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e1e8ed;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #74b9ff, #0984e3);
+            width: 100%;
+        }
+        
+        .btn-secondary a {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .info-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .info-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        
+        .benefits {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+        
+        .benefits h3 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .benefit-item i {
+            color: #667eea;
+            font-size: 1.2rem;
+            margin-right: 15px;
+            width: 20px;
+        }
+        
+        .benefit-item span {
+            color: #2c3e50;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .content-wrapper {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="header">
+            <h1>Join Our Platform</h1>
+            <p>Create your account to access advanced road safety analytics</p>
+        </div>
+        
+        <div class="content-wrapper">
+            <div class="register-section">
+                <h2 class="register-title">Create Account</h2>
+                
+                <form method="POST" role="form">
+                    {% csrf_token %}
+                    
+                    <div class="form-group full-width">
+                        <input type="text" name="username" id="username" placeholder="Username" required>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <input type="email" name="email" id="email" placeholder="Email Address" required>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <input type="password" name="password" id="password" placeholder="Password" required>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <input type="tel" name="phoneno" id="phoneno" placeholder="Mobile Number" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" name="country" id="country" placeholder="Country" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="state" id="state" placeholder="State" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <input type="text" name="city" id="city" placeholder="City" required>
+                    </div>
+                    
+                    <button type="submit" name="submit" class="btn">Create Account</button>
+                    
+                    <button type="button" class="btn btn-secondary">
+                        <a href="{% url 'login' %}">Already have an account? Sign In</a>
+                    </button>
+                </form>
+            </div>
+            
+            <div class="info-section">
+                {% load static %}
+                <img src="{% static 'Register.jpg' %}" alt="Registration">
+                
+                <div class="benefits">
+                    <h3>Why Join Us?</h3>
+                    
+                    <div class="benefit-item">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Advanced Analytics</span>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Safety Predictions</span>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <i class="fas fa-database"></i>
+                        <span>Data Mining Tools</span>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <i class="fas fa-brain"></i>
+                        <span>AI-Powered Insights</span>
+                    </div>
+                    
+                    <div class="benefit-item">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>Mobile Friendly</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
