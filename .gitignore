@@ -55,3 +55,18 @@ Thumbs.db
 
 # Static files (if collected)
 staticfiles/
+# Models and Data (too large for Git)
+models/*.h5
+models/*.keras
+models/*.pt
+models/*.png
+models/*.json
+data/raw_videos/
+data/videos/
+data/clips/*.mp4
+results/*.mp4
+results/*.json
+a_road_accident_prediction/uploads/
+
+# YOLO models
+yolov8*.pt

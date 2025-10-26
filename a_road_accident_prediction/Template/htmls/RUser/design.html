@@ -209,6 +209,12 @@
                     <li><a href="{% url 'Predict_Road_Accident_Status' %}">
                         <i class="fas fa-chart-line"></i> Predict Status
                     </a></li>
+                    <li><a href="{% url 'predict_accident_video' %}">
+                        <i class="fas fa-video"></i> Video Analysis
+                    </a></li>
+                    <li><a href="{% url 'video_prediction_history' %}">
+                        <i class="fas fa-history"></i> History
+                    </a></li>
                     <li><a href="{% url 'ViewYourProfile' %}">
                         <i class="fas fa-user"></i> Profile
                     </a></li>
@@ -234,6 +240,14 @@
                 </div>
                 <h3 class="card-title">AI Prediction</h3>
                 <p class="card-description">Use advanced machine learning algorithms to predict road accident probabilities based on various factors.</p>
+            </div>
+            
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <i class="fas fa-video"></i>
+                </div>
+                <h3 class="card-title">Video Analysis</h3>
+                <p class="card-description">Upload CCTV footage for real-time accident detection using deep learning frame-by-frame analysis.</p>
             </div>
             
             <div class="dashboard-card">

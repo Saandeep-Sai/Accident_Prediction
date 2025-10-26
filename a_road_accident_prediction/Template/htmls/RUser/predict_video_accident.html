@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CCTV Video Accident Prediction</title>
+    <link rel="stylesheet" href="/static/css/modern-styles.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+        }
+        
+        .upload-section {
+            background: #f8f9fa;
+            border: 2px dashed #667eea;
+            border-radius: 10px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .upload-section:hover {
+            border-color: #764ba2;
+            background: #f0f1ff;
+        }
+        
+        .upload-icon {
+            font-size: 4em;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        
+        input[type="file"] {
+            display: none;
+        }
+        
+        .file-label {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            cursor: pointer;
+            display: inline-block;
+            font-size: 1.1em;
+            transition: transform 0.3s ease;
+        }
+        
+        .file-label:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .filename {
+            margin-top: 20px;
+            color: #333;
+            font-weight: bold;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            padding: 15px 60px;
+            border-radius: 50px;
+            font-size: 1.2em;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto;
+            transition: all 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(245, 87, 108, 0.4);
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .result-box {
+            margin-top: 40px;
+            padding: 30px;
+            border-radius: 10px;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .result-accident {
+            background: #ffe5e5;
+            border-left: 5px solid #ff4444;
+        }
+        
+        .result-safe {
+            background: #e5ffe5;
+            border-left: 5px solid #44ff44;
+        }
+        
+        .result-title {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .result-accident .result-title {
+            color: #ff4444;
+        }
+        
+        .result-safe .result-title {
+            color: #44bb44;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .stat-value {
+            color: #333;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        
+        .error-box {
+            background: #ffe5e5;
+            border-left: 5px solid #ff4444;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            color: #c00;
+        }
+        
+        .progress-box {
+            background: #e5f3ff;
+            border-left: 5px solid #4444ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .info-section {
+            background: #f0f8ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        
+        .info-section h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .info-section ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .info-section li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .info-section li:before {
+            content: "✓ ";
+            color: #44bb44;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 30px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚗 CCTV Accident Detection</h1>
+        <p class="subtitle">Upload a video to analyze for potential traffic accidents using AI</p>
+        
+        {% if not success %}
+        <form method="post" enctype="multipart/form-data" id="uploadForm">
+            {% csrf_token %}
+            
+            <div class="upload-section">
+                <div class="upload-icon">📹</div>
+                <h3>Select a video file</h3>
+                <p style="color: #666; margin: 10px 0;">Supported formats: MP4, AVI, MOV (Max 50MB, < 30 seconds)</p>
+                
+                <label for="videoFile" class="file-label">
+                    Choose Video File
+                </label>
+                <input type="file" id="videoFile" name="video" accept="video/*" required>
+                
+                <div class="filename" id="filename"></div>
+            </div>
+            
+            <button type="submit" class="submit-btn" id="submitBtn">
+                Analyze Video for Accidents
+            </button>
+        </form>
+        
+        {% if error %}
+        <div class="error-box">
+            <h3>❌ Error</h3>
+            <p>{{ error }}</p>
+            {% if traceback %}
+            <details style="margin-top: 10px;">
+                <summary>Show technical details</summary>
+                <pre style="background: #fff; padding: 10px; border-radius: 5px; overflow-x: auto; font-size: 0.8em;">{{ traceback }}</pre>
+            </details>
+            {% endif %}
+        </div>
+        {% endif %}
+        
+        <div class="info-section">
+            <h3>ℹ️ How it works</h3>
+            <ul>
+                <li>Upload a CCTV video from your device</li>
+                <li>AI analyzes each frame using deep learning</li>
+                <li>Get instant accident prediction with confidence score</li>
+                <li>View detailed statistics and frame analysis</li>
+            </ul>
+        </div>
+        
+        {% else %}
+        
+        <!-- Results Section -->
+        <div class="result-box {% if prediction.prediction == 'Accident' %}result-accident{% else %}result-safe{% endif %}">
+            <div class="result-title">
+                {% if prediction.prediction == 'Accident' %}
+                    ⚠️ ACCIDENT DETECTED
+                {% else %}
+                    ✅ NO ACCIDENT DETECTED
+                {% endif %}
+            </div>
+            
+            <p style="font-size: 1.2em; margin: 15px 0;">
+                <strong>Confidence:</strong> {{ prediction.confidence|floatformat:2 }}%
+            </p>
+            <p style="font-size: 1.1em; color: #666;">
+                <strong>Accident Probability:</strong> {{ prediction.accident_probability|floatformat:2 }}%
+            </p>
+        </div>
+        
+        <!-- Statistics Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Video Duration</div>
+                <div class="stat-value">{{ video_info.duration|floatformat:1 }}s</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-label">Frames Analyzed</div>
+                <div class="stat-value">{{ stats.total_frames }}</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-label">Accident Frames</div>
+                <div class="stat-value">{{ stats.accident_frames }}</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-label">Detection Rate</div>
+                <div class="stat-value">{{ stats.accident_percentage|floatformat:1 }}%</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-label">Resolution</div>
+                <div class="stat-value">{{ video_info.width }}x{{ video_info.height }}</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-label">Frame Rate</div>
+                <div class="stat-value">{{ video_info.fps|floatformat:1 }} FPS</div>
+            </div>
+            
+            {% if stats.total_objects_detected %}
+            <div class="stat-card">
+                <div class="stat-label">Objects Detected</div>
+                <div class="stat-value">{{ stats.total_objects_detected }}</div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-label">Avg Objects/Frame</div>
+                <div class="stat-value">{{ stats.avg_objects_per_frame|floatformat:1 }}</div>
+            </div>
+            {% endif %}
+        </div>
+        
+        <!-- Annotated Video Player -->
+        {% if has_output_video %}
+        <div class="info-section" style="margin-top: 30px; background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); color: white;">
+            <h3 style="color: white; display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-video"></i> 
+                Annotated Video Analysis
+            </h3>
+            <p style="color: #e0e0e0; margin-bottom: 20px;">
+                Watch the frame-by-frame analysis with real-time accident detection highlights
+            </p>
+            
+            <!-- Debug info -->
+            <div style="background: rgba(255,255,255,0.1); padding: 10px; border-radius: 5px; margin-bottom: 15px; font-size: 12px;">
+                <strong>Video URL:</strong> /video_results/{{ result_video }}/<br>
+                <strong>Video File:</strong> {{ result_video }}
+            </div>
+            
+            <div style="background: #000; border-radius: 10px; overflow: hidden; box-shadow: 0 8px 32px rgba(0,0,0,0.3);">
+                <video 
+                    id="annotatedVideo"
+                    controls 
+                    preload="auto"
+                    style="width: 100%; max-height: 600px; display: block;"
+                >
+                    <source src="{% url 'serve_video_result' result_video=result_video %}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            
+            <!-- Download button if video won't play -->
+            <div style="text-align: center; margin-top: 15px;">
+                <a href="{% url 'serve_video_result' result_video=result_video %}" 
+                   download="{{ result_video }}"
+                   style="display: inline-block; padding: 12px 30px; background: #e74c3c; color: white; text-decoration: none; border-radius: 50px; font-weight: bold; transition: all 0.3s ease;">
+                    <i class="fas fa-download"></i> Download Annotated Video
+                </a>
+                <p style="color: #e0e0e0; margin-top: 10px; font-size: 0.9em;">
+                    If the video doesn't play in your browser, click the button above to download it
+                </p>
+            </div>
+            
+            <div style="margin-top: 15px; padding: 15px; background: rgba(255,255,255,0.1); border-radius: 8px;">
+                <h4 style="color: white; margin-bottom: 10px;">
+                    <i class="fas fa-info-circle"></i> Video Features:
+                </h4>
+                <ul style="list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+                    <li style="border: none; padding: 5px 0;">
+                        <i class="fas fa-check-circle" style="color: #44bb44;"></i> 
+                        Frame-by-frame predictions
+                    </li>
+                    <li style="border: none; padding: 5px 0;">
+                        <i class="fas fa-check-circle" style="color: #44bb44;"></i> 
+                        Confidence scores overlay
+                    </li>
+                    <li style="border: none; padding: 5px 0;">
+                        <i class="fas fa-check-circle" style="color: #44bb44;"></i> 
+                        Red border on accident frames
+                    </li>
+                    <li style="border: none; padding: 5px 0;">
+                        <i class="fas fa-check-circle" style="color: #44bb44;"></i> 
+                        Warning alerts on detection
+                    </li>
+                </ul>
+            </div>
+        </div>
+        {% else %}
+        <!-- Debug: Video not found -->
+        <div class="info-section" style="margin-top: 30px; background: #ffeaa7; color: #2d3436; padding: 20px; border-radius: 10px;">
+            <h3 style="color: #d63031;">
+                <i class="fas fa-exclamation-triangle"></i> 
+                Annotated Video Not Available
+            </h3>
+            <p>The video analysis completed, but the annotated output video was not generated. You can still see the prediction results and statistics above.</p>
+            <p><strong>Possible reasons:</strong></p>
+            <ul>
+                <li>Video processing completed too quickly (check if --output parameter was passed)</li>
+                <li>Output directory permissions issue</li>
+                <li>Video codec compatibility issue</li>
+            </ul>
+        </div>
+        {% endif %}
+        
+        <!-- Additional Info -->
+        <div class="info-section" style="margin-top: 30px;">
+            <h3>📊 Detailed Analysis</h3>
+            <ul style="list-style: none; padding: 0;">
+                <li style="border-bottom: 1px solid #e0e0e0; padding: 10px 0;">
+                    <strong>Video File:</strong> {{ video_filename }}
+                </li>
+                <li style="border-bottom: 1px solid #e0e0e0; padding: 10px 0;">
+                    <strong>Processing Method:</strong> Frame-by-frame CNN classification ({{ processing_info.aggregate_method }} aggregation)
+                </li>
+                <li style="border-bottom: 1px solid #e0e0e0; padding: 10px 0;">
+                    <strong>Sampling Rate:</strong> Every {{ processing_info.sample_rate }} frame(s)
+                </li>
+                <li style="border-bottom: 1px solid #e0e0e0; padding: 10px 0;">
+                    <strong>Mean Probability:</strong> {{ stats.mean_probability|floatformat:2 }}% ± {{ stats.std_probability|floatformat:2 }}%
+                </li>
+                <li style="border-bottom: 1px solid #e0e0e0; padding: 10px 0;">
+                    <strong>Probability Range:</strong> {{ stats.min_probability|floatformat:2 }}% - {{ stats.max_probability|floatformat:2 }}%
+                </li>
+            </ul>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="{% url 'predict_accident_video' %}" class="back-btn">
+                Analyze Another Video
+            </a>
+            <a href="{% url 'ViewYourProfile' %}" class="back-btn" style="background: #44bb44; margin-left: 10px;">
+                Back to Dashboard
+            </a>
+        </div>
+        
+        {% endif %}
+    </div>
+    
+    <script>
+        // File selection preview
+        document.getElementById('videoFile').addEventListener('change', function(e) {
+            const filename = e.target.files[0]?.name;
+            if (filename) {
+                document.getElementById('filename').textContent = '📁 Selected: ' + filename;
+            }
+        });
+        
+        // Form submission handling
+        document.getElementById('uploadForm')?.addEventListener('submit', function(e) {
+            const fileInput = document.getElementById('videoFile');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                alert('Please select a video file first!');
+                e.preventDefault();
+                return;
+            }
+            
+            // Check file size (50MB limit)
+            if (file.size > 50 * 1024 * 1024) {
+                alert('File is too large! Please upload a video smaller than 50MB.');
+                e.preventDefault();
+                return;
+            }
+            
+            // Show processing message
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<div class="spinner" style="display: inline-block; width: 20px; height: 20px; margin-right: 10px;"></div> Processing... This may take 1-2 minutes';
+            
+            // Add progress indicator
+            const progressBox = document.createElement('div');
+            progressBox.className = 'progress-box';
+            progressBox.innerHTML = '<div class="spinner"></div><p><strong>Analyzing video...</strong></p><p>Please wait while our AI processes your video frame by frame.</p>';
+            document.querySelector('.upload-section').after(progressBox);
+        });
+    </script>
+</body>
+</html>

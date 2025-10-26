@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Prediction History</title>
+    <link rel="stylesheet" href="/static/css/modern-styles.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .history-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .history-table td {
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .history-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .badge-accident {
+            background: #ff4444;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        
+        .badge-safe {
+            background: #44bb44;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: #764ba2;
+            transform: translateY(-2px);
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+        
+        .empty-state-icon {
+            font-size: 5em;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Video Prediction History</h1>
+        
+        {% if predictions %}
+        <table class="history-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Video File</th>
+                    <th>Prediction</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pred in predictions %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ pred.Type_of_Vehicle }}</td>
+                    <td>
+                        {% if pred.SVM == 'Accident' %}
+                        <span class="badge-accident">⚠️ ACCIDENT</span>
+                        {% else %}
+                        <span class="badge-safe">✅ SAFE</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ pred.Age }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="empty-state">
+            <div class="empty-state-icon">📹</div>
+            <h2>No video predictions yet</h2>
+            <p>Upload a video to see your prediction history</p>
+        </div>
+        {% endif %}
+        
+        <div style="margin-top: 30px;">
+            <a href="{% url 'predict_accident_video' %}" class="back-btn">
+                ➕ Analyze New Video
+            </a>
+            <a href="{% url 'ViewYourProfile' %}" class="back-btn" style="background: #44bb44; margin-left: 10px;">
+                🏠 Back to Dashboard
+            </a>
+        </div>
+    </div>
+</body>
+</html>
